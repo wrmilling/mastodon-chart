@@ -94,6 +94,10 @@ spec:
             - name: "PERSISTENT_TIMEOUT"
               value: {{ .Values.mastodon.web.persistentTimeout | quote }}
             {{- end }}
+            {{- if .Values.mastodon.max_post_length }}
+            - name: "MAX_TOOT_CHARS"
+              value: {{ .Values.mastodon.max_post_length | quote }}
+            {{- end }}
             {{- if (and .Values.mastodon.s3.enabled .Values.mastodon.s3.existingSecret) }}
             - name: "AWS_SECRET_ACCESS_KEY"
               valueFrom:
